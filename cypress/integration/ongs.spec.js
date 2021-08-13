@@ -22,7 +22,45 @@ describe('Ongs', () => {
 
     it('Devem poder realizar um login no sistema', () => {
         cy.visit('http://localhost:3000/');
-        cy.get('input').type(Cypress.env('createdOngId'));
-        cy.get('.button').click();
+        cy.get('[data-cy=id]').type(Cypress.env('createdOngId'));
+        cy.get('[data-cy=button-login]').click();
+    });
+
+    it('Devem poder fazer logout', () => {
+        cy.login();
+        cy.get('[data-cy=button-logout]').click();
+    });
+
+    it('Devem poder cadastrar novos casos', () => {
+        cy.login();
+        cy.get('[data-cy=button-new-incident]').click();
+
+        cy.get('[data-cy=title]').type('Animal abandonado');
+        cy.get('[data-cy=description]').type('Animal precisa de apoio para ter onde morar.');
+        cy.get('[data-cy=value]').type('200');
+
+        cy.intercept('POST', '**/incidents').as('newIncident');
+
+        cy.get('[data-cy=button-save]').click();
+
+        cy.wait('@newIncident').then((xhr) => {
+            expect(xhr.response.statusCode).to.eq(200);
+            expect(xhr.response.body).has.property('id');
+            expect(xhr.response.body.id).is.not.null;
+        });
+    });
+
+    it('Devem poder excluir um caso', () => {
+        cy.createNewIncident();
+        cy.login();
+
+        cy.intercept('DELETE', '**/incidents/*').as('deleteIncident');
+
+        cy.get('ul > :nth-child(1) > button').click();
+
+        cy.wait('@deleteIncident').then((xhr) => {
+            expect(xhr.response.statusCode).to.eq(204);
+            expect(xhr.response.body).to.be.empty;
+        })
     });
 });
