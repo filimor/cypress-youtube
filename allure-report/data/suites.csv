@@ -1,0 +1,6 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Mon Aug 16 21:56:38 BRT 2021","Mon Aug 16 21:56:38 BRT 2021","235","","Ongs","","","","Devem poder excluir um caso",""
+"passed","Mon Aug 16 21:56:36 BRT 2021","Mon Aug 16 21:56:38 BRT 2021","1616","","Ongs","","","","Devem poder cadastrar novos casos",""
+"passed","Mon Aug 16 21:56:33 BRT 2021","Mon Aug 16 21:56:36 BRT 2021","2888","","Ongs","","","","Devem poder realizar um cadastro",""
+"passed","Mon Aug 16 21:56:36 BRT 2021","Mon Aug 16 21:56:36 BRT 2021","197","","Ongs","","","","Devem poder fazer logout",""
+"passed","Mon Aug 16 21:56:36 BRT 2021","Mon Aug 16 21:56:36 BRT 2021","456","","Ongs","","","","Devem poder realizar um login no sistema",""

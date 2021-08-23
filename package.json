@@ -4,12 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cypress open"
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --config video=false --env allure=true",
+    "allure:generate": "allure generate allure-results",
+    "allure:show": "allure open allure-report",
+    "allure:clear": "rm -r allure-results/ allure-report/ || true",
+    "test": "yarn cy:run && allure:clear && allure:generate"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.10.0",
     "cypress": "^8.2.0"
   }
 }
